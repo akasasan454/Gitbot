@@ -15,7 +15,7 @@ class ChatworkController < ApplicationController
         limit:   unix_time_limit
         )
 
-        render :nothing => true, :status => 204
+        render text: "success", status: 200
 
 	end
 end

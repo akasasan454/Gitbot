@@ -1,10 +1,8 @@
 class ChatworkController < ApplicationController
  protect_from_forgery :except => [:create_task]
 	def create_task
+json_request = JSON.parse(request.body.read)
 
-if params.dig(:pull_request,:url).present?
-	url = params.dig(:pull_request,:url)
-end
 
         ChatWork.api_key = "4fd3ff0947b7bcf450adcff1310fe618"
         unix_time_limit = Time.parse(Date.today.to_s).to_i
@@ -13,7 +11,7 @@ end
 
         ChatWork::Task.create(
         room_id: room_id,
-        body:    "【自動投稿】出勤さい\n#{url}",
+        body:    "【自動投稿】出勤さい\n#{json_request}",
         to_ids:  to_ids,
         limit:   unix_time_limit
         )

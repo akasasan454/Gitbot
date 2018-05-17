@@ -1,10 +1,10 @@
 class ChatworkController < ApplicationController
  protect_from_forgery :except => [:create_task]
 	def create_task
-	
 
-		url = params[:push][:url]
-
+if params[:pull_request][:url].present?
+	url = params[:pull_request][:url]
+end
 
         ChatWork.api_key = "4fd3ff0947b7bcf450adcff1310fe618"
         unix_time_limit = Time.parse(Date.today.to_s).to_i

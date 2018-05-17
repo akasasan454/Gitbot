@@ -12,7 +12,7 @@ class ChatworkController < ApplicationController
 
         ChatWork::Task.create(
         room_id: room_id,
-        body:    "【自動投稿】出勤しなさい\n#{url}",
+        body:    "【自動投稿】出勤さい\n#{url}",
         to_ids:  to_ids,
         limit:   unix_time_limit
         )

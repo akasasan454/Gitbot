@@ -1,6 +1,7 @@
 class ChatworkController < ApplicationController
-
+ protect_from_forgery :except => [:create_task]
 	def create_task
+	
 
 		url = params[:push][:url]
 

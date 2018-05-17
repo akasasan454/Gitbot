@@ -1,5 +1,6 @@
 class ChatworkController < ApplicationController
  protect_from_forgery :except => [:create_task]
+ skip_before_filter :verify_authenticity_token
 	def create_task
 json_request = JSON.parse(request.body.read)
 

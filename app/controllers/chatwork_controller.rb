@@ -1,9 +1,10 @@
 class ChatworkController < ApplicationController
  protect_from_forgery :except => [:create_task]
- skip_before_filter :verify_authenticity_token
 	def create_task
-json_request = JSON.parse(request.body.read)
-
+		if request.body.read.present?
+            json_request = JSON.parse(request.body.read)
+        end
+        
         ChatWork.api_key = "4fd3ff0947b7bcf450adcff1310fe618"
         unix_time_limit = Time.parse(Date.today.to_s).to_i
         room_id         = 60381054

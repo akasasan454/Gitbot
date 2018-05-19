@@ -11,8 +11,8 @@ class ChatworkController < ApplicationController
         to_ids          = "2119717"
         # 2894903
         body            = "【Pull request自動通知】お手すきで対応お願い致します。\n"
-        body           += " sender：#{json_request.dig("sender","login")}\n"
-        body           += " #{json_request.dig("pull_request","html_url")}"
+        body           += "  sender：#{json_request.dig("sender","login")}\n"
+        body           += "  #{json_request.dig("pull_request","html_url")}"
 
         ChatWork::Task.create(
         room_id: room_id,

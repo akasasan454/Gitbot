@@ -9,9 +9,9 @@ class ChatworkController < ApplicationController
         unix_time_limit = Time.parse(Date.today.to_s).to_i
         room_id         = 60381054
         to_ids          = "2119717"
-        body            = "【pull requestj自動通知】お手すきで対応お願い致します\n"
-        body           += "sender：#{json_request.dig(:sender)}\n"
-        body           += "#{json_request.dig(:pull_request,0,:html_url)}"
+        body            = "【pull request自動通知】お手すきで対応お願い致します\n"
+        body           += "sender：#{json_request.dig("sender","login")}\n"
+        body           += "#{json_request.dig("pull_request","html_url")}"
 
         ChatWork::Task.create(
         room_id: room_id,

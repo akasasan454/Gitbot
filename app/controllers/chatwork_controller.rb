@@ -4,7 +4,11 @@ class ChatworkController < ApplicationController
 		if request.body.read.present?
             json_request = JSON.parse(request.body.read)
             
-            ChatWork.api_key = "4fd3ff0947b7bcf450adcff1310fe618"
+            # oogaito
+            #ChatWork.api_key = "4fd3ff0947b7bcf450adcff1310fe618"
+
+            # Githubot
+            ChatWork.api_key = "f99400e7e1ef2524e83fa709b14e1cad"
             room_id         = 108309047
 
             if json_request.dig("action") == "opened"
@@ -13,7 +17,7 @@ class ChatworkController < ApplicationController
                 body           += "create_by：#{json_request.dig("sender","login")}\n"
                 body           += "#{json_request.dig("pull_request","html_url")}"
             elsif json_request.dig("action") == "closed"
-        	    body            = "[To:2119717] 大垣内　貴文さん\n"
+                body            = "[To:2119717] 大垣内 貴文さん\n"
                 body           += "マージされました。ご確認お願い致します。 \n"
                 body           += "marged_by：#{json_request.dig("sender","login")}\n"
                 body           += "#{json_request.dig("pull_request","html_url")}"

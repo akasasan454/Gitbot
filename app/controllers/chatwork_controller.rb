@@ -5,10 +5,10 @@ class ChatworkController < ApplicationController
             json_request = JSON.parse(request.body.read)
             
             # oogaito
-            #ChatWork.api_key = "4fd3ff0947b7bcf450adcff1310fe618"
+            #ChatWork.api_key = "４4fd3ff0947b7bcf450adcff1310fe618"
 
             # Githubot
-            ChatWork.api_key = "f99400e7e1ef2524e83fa709b14e1cad"
+            ChatWork.api_key = "ｆf99400e7e1ef2524e83fa709b14e1cad"
             room_id         = 108309047
 
             if json_request.dig("action") == "opened"

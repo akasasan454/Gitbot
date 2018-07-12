@@ -1,7 +1,7 @@
 class ChatworkController < ApplicationController
  protect_from_forgery :except => [:create_task]
-	def create_task
-		if request.body.read.present?
+　　　　　　　　def create_task
+	if request.body.read.present?
             json_request = JSON.parse(request.body.read)
             
             # oogaito
@@ -28,5 +28,5 @@ class ChatworkController < ApplicationController
             body:    body
             )
         end
-	end
+　　　　　　　　end
 end

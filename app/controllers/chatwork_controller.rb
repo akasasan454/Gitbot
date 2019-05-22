@@ -7,20 +7,20 @@ class ChatworkController < ApplicationController
 
             json_request = JSON.parse(request.body.read)
             if json_request.dig("action") == "opened"
-                body            = "[To:2894903] 山崎 友弘さん\n"
-                body           += "プルリクが作成されました。お手すきで対応お願い致します。\n"
-                body           += "create_by：#{json_request.dig("sender","login")}\n"
-                body           += "#{json_request.dig("pull_request","html_url")}"
+                body = "[To:#{ENV["OPEND_ID"]}] 〇〇〇さん\n"
+                body += "プルリクが作成されました。お手すきで対応お願い致します。\n"
+                body += "create_by：#{json_request.dig("sender","login")}\n"
+                body += "#{json_request.dig("pull_request","html_url")}"
             elsif json_request.dig("action") == "closed"
-                body            = "[To:2119717] 大垣内 貴文さん\n"
-                body           += "マージされました。ご確認お願い致します。 \n"
-                body           += "marged_by：#{json_request.dig("sender","login")}\n"
-                body           += "#{json_request.dig("pull_request","html_url")}"
+                body = "[To:#{ENV["CLOSED_ID"]}] 〇〇〇さん\n"
+                body += "マージされました。ご確認お願い致します。 \n"
+                body += "marged_by：#{json_request.dig("sender","login")}\n"
+                body += "#{json_request.dig("pull_request","html_url")}"
             end
 
             ChatWork::Message.create(
-            room_id: ENV["CHATWORK_ROOM_ID"],
-            body:    body
+                room_id: ENV["CHATWORK_ROOM_ID"],
+		body:    body
             )
         end
 　　　end

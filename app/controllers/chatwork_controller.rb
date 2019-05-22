@@ -2,15 +2,10 @@ class ChatworkController < ApplicationController
  protect_from_forgery :except => [:create_task]
 　　　def create_task
 	if request.body.read.present?
-            json_request = JSON.parse(request.body.read)
-            
-            # oogaito
-            #ChatWork.api_key = "４4fd3ff0947b7bcf450adcff1310fe618"
-
             # Githubot
-            ChatWork.api_key = "ｆf99400e7e1ef2524e83fa709b14e1cad"
-            room_id         = 108309047
+            ChatWork.api_key = ENV["CHATWORK_API_KEY"]
 
+            json_request = JSON.parse(request.body.read)
             if json_request.dig("action") == "opened"
                 body            = "[To:2894903] 山崎 友弘さん\n"
                 body           += "プルリクが作成されました。お手すきで対応お願い致します。\n"
@@ -24,7 +19,7 @@ class ChatworkController < ApplicationController
             end
 
             ChatWork::Message.create(
-            room_id: room_id,
+            room_id: ENV["CHATWORK_ROOM_ID"],
             body:    body
             )
         end
